@@ -2,9 +2,15 @@ application:
   name: copilotkit
   pods:
   - name: app
-    image: node:20-alpine
+    image: ghcr.io/open-webui/open-webui:ollama
     path: /
     servicePorts:
-    - 3000
+    - 8080
     vars:
-      NODE_ENV: production
+      WEBUI_SECRET_KEY: "copilotkit-nexlayer-secret-2024"
+      WEBUI_AUTH: "False"
+      OLLAMA_BASE_URL: ""
+    volumes:
+    - name: copilotkit-data
+      mountPath: /app/backend/data
+      size: 5Gi
